@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static double[] getFilledArray(final int size, double mod, ElementGenerator elementGenerator) {
+    public static double[] getFilledArray(final int size, final double mod, final ElementGenerator elementGenerator) {
         double[] result = new double[size];
 
         for (int i = 0; i < size; i++) {
@@ -12,18 +12,19 @@ public class Main {
         return result;
     }
 
-    public static void main(String[] args) {
-        final int ARRAYS_SIZE = 10;
+    public static void main(final String[] args) {
+        final int arraysSize = 10;
 
         Scanner scanner = new Scanner(System.in);
         double modifier = scanner.nextDouble();
+        scanner.close();
 
         // элемент = индекс плюс модификатор
-        double[] firstArray = getFilledArray(ARRAYS_SIZE, modifier, (index, mod) -> index + mod);
+        double[] firstArray = getFilledArray(arraysSize, modifier, (index, mod) -> index + mod);
         System.out.println(Arrays.toString(firstArray));
 
         // элемент = индекс, умноженный на модификатор
-        double[] secondArray = getFilledArray(ARRAYS_SIZE, modifier, (index, mod) -> index * mod);
+        double[] secondArray = getFilledArray(arraysSize, modifier, (index, mod) -> index * mod);
         System.out.println(Arrays.toString(secondArray));
 
         /*
@@ -31,9 +32,9 @@ public class Main {
          *          {квадрат индекса минис модификатор} - для нечетных
          */
         double[] thirdArray = getFilledArray(
-                ARRAYS_SIZE,
+                arraysSize,
                 modifier,
-                (index, mod) -> (index % 2 == 0) ? (index / 2 + mod) : (index * index - mod)
+                (index, mod) -> (index % 2 == 0) ? (index / 2.0 + mod) : (index * index - mod)
         );
         System.out.println(Arrays.toString(thirdArray));
 
@@ -43,13 +44,13 @@ public class Main {
          *          {индекс} - [6, ...)
          */
         double[] fourthArray = getFilledArray(
-                ARRAYS_SIZE,
+                arraysSize,
                 modifier,
                 (index, mod) -> {
                     if (index < 3) {
                         return index + mod * mod;
                     } else {
-                        if (index < 6){
+                        if (index < 6) {
                             double result = 1;
                             for (int i = 1; i <= index; i++) {
                                 result *= mod;
@@ -67,14 +68,14 @@ public class Main {
          *          плюс индекс, деленное на размер массива
          */
         double[] fifthArray = getFilledArray(
-                ARRAYS_SIZE,
+                arraysSize,
                 modifier,
                 (index, mod) -> {
                     double result = 1;
                     for (int i = 0; i < mod; i++) {
-                        result *= ARRAYS_SIZE;
+                        result *= arraysSize;
                     }
-                    return (result + index) / ARRAYS_SIZE;
+                    return (result + index) / arraysSize;
                 }
         );
         System.out.println(Arrays.toString(fifthArray));

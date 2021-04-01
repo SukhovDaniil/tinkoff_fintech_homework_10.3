@@ -3,5 +3,5 @@
  */
 @FunctionalInterface
 public interface ElementGenerator {
-    double process(final int index, final double modifier);
+    double process(int index, double modifier);
 }
